@@ -1,0 +1,16 @@
+program provaMedlab;
+
+uses
+  Vcl.Forms,
+  uPrincipal in 'uPrincipal.pas' {Form1},
+  uConexao in 'uConexao.pas' {dm_dados: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(Tdm_dados, dm_dados);
+  Application.Run;
+end.

@@ -1,0 +1,12 @@
+unit uConecta;
+
+interface
+
+uses
+   Windows, Messages, SysUtils, Classes,  Controls, Forms, Dialogs,
+   Variants, Contnrs,  DBXFirebird, SqlExpr,  StrUtils, inifiles,
+   udbdz;
+
+implementation
+
+end.

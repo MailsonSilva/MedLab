@@ -1,0 +1,63 @@
+object dm_dados: Tdm_dados
+  OldCreateOrder = False
+  Height = 314
+  Width = 507
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'Database=D:\Mailson\Documents\Projetos\Delphi\Banco\BANCO.FDB'
+      'User_Name=SYSDBA'
+      'Password=masterkey'
+      'Server=192.168.100.6'
+      'DriverID=FB')
+    Connected = True
+    LoginPrompt = False
+    Left = 232
+    Top = 72
+  end
+  object FDPhysFBDriverLink1: TFDPhysFBDriverLink
+    VendorLib = 'C:\Program Files\Firebird\Firebird_3_0\WOW64\fbclient.dll'
+    Left = 88
+    Top = 72
+  end
+  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
+    Provider = 'Forms'
+    Left = 112
+    Top = 224
+  end
+  object qryMetlab: TFDQuery
+    DetailFields = 'CODIGO;ENDERECO;IDADE;NOME;TELEFONE'
+    Connection = FDConnection1
+    SQL.Strings = (
+      'SELECT * FROM CLIENTE')
+    Left = 224
+    Top = 224
+    object qryMetlabCODIGO: TIntegerField
+      FieldName = 'CODIGO'
+      Origin = 'CODIGO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryMetlabNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Required = True
+      Size = 50
+    end
+    object qryMetlabENDERECO: TStringField
+      FieldName = 'ENDERECO'
+      Origin = 'ENDERECO'
+      Required = True
+      Size = 50
+    end
+    object qryMetlabIDADE: TIntegerField
+      FieldName = 'IDADE'
+      Origin = 'IDADE'
+    end
+    object qryMetlabTELEFONE: TStringField
+      FieldName = 'TELEFONE'
+      Origin = 'TELEFONE'
+      Required = True
+      Size = 11
+    end
+  end
+end

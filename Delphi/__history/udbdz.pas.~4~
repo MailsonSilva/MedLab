@@ -1,0 +1,58 @@
+unit udbdz;
+
+interface
+
+uses System.IniFiles, System.SysUtils, Vcl.Forms, uCon, Data.DB;
+
+Type
+ TConect = class
+   private
+
+    FDataSource: TDataSource;
+    FConexao: TConexao;
+    procedure SetConexao(const Value: TConexao);
+    procedure SetDataSource(const Value: string);
+   protected
+
+   public
+     { public declarations }
+      procedure conectar;
+   published
+     property DataSource: TDataSource read FDataSource write SetDataSource;
+     property Conexao: TConexao read FConexao write SetConexao;
+   end;
+
+implementation
+
+
+{ TConect }
+
+procedure TConect.conectar;
+var
+Arquivo: TIniFile{uses IniFiles};
+begin
+  Try
+     Arquivo:= TIniFile.Create(ExtractFilePath(Application.ExeName)+'CONF.ini');
+     with DM.CONEXAO do
+     begin
+       Params.Values['DATABASE'] := Arquivo.ReadString('DADOS','DATABASE','');
+       Params.Values['USERNAME'] := Arquivo.ReadString('DADOS','USERNAME','');
+       Params.Values['PASSWORD'] := Arquivo.ReadString('DADOS','PASSWORD','');
+       Arquivo.Free
+     end;
+  Except
+    ShowMessage('Não foi possivel conectar! Nenhum servidor disponível...');
+  End;
+end;
+
+procedure TConect.SetConexao(const Value: TConexao);
+begin
+  FConexao := Value;
+end;
+
+procedure TConect.SetDataSource(const Value: string);
+begin
+  FDataSource := Value;
+end;
+
+end.
